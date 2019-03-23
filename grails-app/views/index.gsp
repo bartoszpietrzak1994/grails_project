@@ -70,6 +70,9 @@
                 </g:each>
             </ul>
         </div>
+        <div id="pages-list" role="navigation">
+            <g:link controller="user" action="users">List of users</g:link>
+        </div>
     </section>
 </div>
 
