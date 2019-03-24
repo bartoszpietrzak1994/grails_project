@@ -1,14 +1,23 @@
 package user
 
-class UserRole
-{
-    String roleName
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+import grails.compiler.GrailsCompileStatic
 
-    static constraints = {
-        roleName unique: true
-    }
+@GrailsCompileStatic
+@EqualsAndHashCode(includes='authority')
+@ToString(includes='authority', includeNames=true, includePackage=false)
+class UserRole implements Serializable {
 
-    static mapping = {
-        id(generator: 'org.hibernate.id.enhanced.SequenceStyleGenerator')
-    }
+	private static final long serialVersionUID = 1
+
+	String authority
+
+	static constraints = {
+		authority nullable: false, blank: false, unique: true
+	}
+
+	static mapping = {
+		cache true
+	}
 }
