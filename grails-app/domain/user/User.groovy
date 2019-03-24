@@ -8,7 +8,6 @@ class User
     String password
     boolean enabled
 
-    static hasOne = [verificationToken: VerificationToken]
     static hasMany = [userRoles: UserRole, orders: Order]
 
     static constraints = {

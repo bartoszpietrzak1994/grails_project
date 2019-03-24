@@ -3,7 +3,6 @@ package user
 class UserRole
 {
     String roleName
-    static belongsTo = [user:User]
 
     static constraints = {
         roleName unique: true
