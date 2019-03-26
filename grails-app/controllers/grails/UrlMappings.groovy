@@ -9,7 +9,9 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
+        "/admin/users"(resources: 'user')
+
+        "/"(view:"/user/shopUserLoginView")
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

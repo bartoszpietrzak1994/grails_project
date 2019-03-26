@@ -4,6 +4,7 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'user.UserUserR
 grails.plugin.springsecurity.authority.className = 'user.UserRole'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
+	[pattern: '/user/*',         access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
 	[pattern: '/index',          access: ['permitAll']],
 	[pattern: '/index.gsp',      access: ['permitAll']],
