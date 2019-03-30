@@ -19,23 +19,17 @@ class UserController
         ]
     }
 
-    def shopUserRegisterView()
-    {
-        render(template: "shopUserRegister")
-    }
+    def shopUserRegisterView() {}
 
-    def shopUserLoginView()
-    {
-        render(template: "shopUserLogin")
-    }
+    def shopUserLoginView() {}
 
     def shopUserRegister()
     {
-        User user = this.registerer.register(params.user.email, params.user.password, "ROLE_USER", false)
+        User user = this.registerer.register(params.email, params.password, "ROLE_USER", false)
 
         verificationTokenSender.generateAndSendTokenForUser(user)
 
-        render(template: "shopUserRegister")
+        redirect(controllerName: user, actionName: shopUserRegisterView)
     }
 
     @Secured("ROLE_ADMIN")

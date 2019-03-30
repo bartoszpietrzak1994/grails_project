@@ -6,7 +6,7 @@ import org.springframework.mail.javamail.JavaMailSender
 class VerificationTokenSender
 {
     private static final String REGISTRATION_CONFIRMATION_URL = "http://localhost:8080/registrationConfirm/";
-    private JavaMailSender mailSender;
+    private JavaMailSender mailSender
 
     void generateAndSendTokenForUser(User user)
     {
@@ -24,5 +24,9 @@ class VerificationTokenSender
         email.setSubject(subject)
         email.setText(confirmationUrl)
         mailSender.send(email)
+    }
+
+    void setMailSender(JavaMailSender mailSender) {
+        this.mailSender = mailSender
     }
 }

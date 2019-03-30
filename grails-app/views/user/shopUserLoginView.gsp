@@ -9,24 +9,23 @@
 <body>
     <div class="container vertical-center">
         <div class="login-form">
-            <h2 class="text-center" text="${g.message(code: 'ui.signin')}"></h2>
+            <h2 class="text-center">
+                <g:message code="ui.signin" />
+            </h2>
             <br />
-            <form action="/shop/login" method="post">
+            <g:form url="/login">
                 <div class="form-group">
                     <input type="text" name="email" placeholder="${g.message(code: 'ui.email')}" class="form-control">
                 </div>
                 <div class="form-group">
                     <input type="password" name="password" placeholder="${g.message(code: 'ui.password')}" class="form-control">
                 </div>
-                <button class="btn btn-primary btn-block" type="submit" text="${g.message(code: 'ui.signin')}"></button>
+                <g:submitButton name="signin" value="${g.message(code: 'ui.signin')}" class="btn btn-primary btn-block"></g:submitButton>
+            </g:form>
 
-                %{--todo--}%
-                %{--captcha--}%
-            </form>
-
-            <p class="text-center">
-                <a href="/shop/register" text="${g.message(code: 'ui.register')}"></a>
-            </p>
+            <g:link controller="user" action="shopUserRegisterView">
+                <button class="btn btn-primary btn-block" ><g:message code="ui.register"/></button>
+            </g:link>
         </div>
     </div>
 </body>

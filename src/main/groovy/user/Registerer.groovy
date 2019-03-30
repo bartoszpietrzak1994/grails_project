@@ -32,4 +32,8 @@ class Registerer
     {
         return bCryptPasswordEncoder.encode(password)
     }
+
+    void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder
+    }
 }
