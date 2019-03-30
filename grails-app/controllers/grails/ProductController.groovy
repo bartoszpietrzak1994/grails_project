@@ -5,7 +5,7 @@ import product.Product
 
 class ProductController
 {
-    @Secured(["ROLE_USER", "ROLE_ADMIN"])
+//    @Secured(["ROLE_USER", "ROLE_ADMIN"])
     def products()
     {
         def productList = Product.list()
@@ -14,16 +14,16 @@ class ProductController
         ]
     }
 
-    @Secured("ROLE_ADMIN")
+//    @Secured("ROLE_ADMIN")
     def addProduct()
     {
         render(template: 'addProduct')
     }
 
-    @Secured("ROLE_ADMIN")
+//    @Secured("ROLE_ADMIN")
     def save()
     {
-        def product = new Product(params)
+        def product = new Product(params.name, params.price, params.date)
 
         product.validate()
 

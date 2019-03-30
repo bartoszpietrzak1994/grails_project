@@ -10,8 +10,6 @@ import grails.compiler.GrailsCompileStatic
 @ToString(cache=true, includeNames=true, includePackage=false)
 class UserUserRole implements Serializable {
 
-	private static final long serialVersionUID = 1
-
 	User user
 	UserRole userRole
 

@@ -11,7 +11,7 @@ class UrlMappings {
 
         "/admin/users"(resources: 'user')
 
-        "/"(view:"/user/shopUserLoginView")
+        "/"(view:"/product/addProduct")
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

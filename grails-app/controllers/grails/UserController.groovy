@@ -3,6 +3,7 @@ package grails
 import grails.plugin.springsecurity.annotation.Secured
 import user.Registerer
 import user.User
+import user.VerificationToken
 import user.VerificationTokenSender
 
 class UserController
@@ -10,7 +11,6 @@ class UserController
     Registerer registerer
     VerificationTokenSender verificationTokenSender
 
-    @Secured("ROLE_ADMIN")
     def users()
     {
         def usersList = User.list()
@@ -29,13 +29,33 @@ class UserController
 
         verificationTokenSender.generateAndSendTokenForUser(user)
 
-        redirect(controllerName: user, actionName: shopUserRegisterView)
+        redirect(controllerName: user, actionName: users())
+    }
+
+    def confirmRegistration()
+    {
+        VerificationToken verificationToken = VerificationToken.findByToken(params.token)
+
+        if (verificationToken == null) {
+            redirect(controllerUri: '/error')
+        }
+
+        Calendar cal = Calendar.getInstance()
+        if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
+            redirect(controllerUri: '/error')
+        }
+
+        User user = verificationToken.getUser()
+
+        user.setEnabled(true)
+
+        user.save(flush: true, failOnError: true)
     }
 
     @Secured("ROLE_ADMIN")
     def adminUserRegisterView()
     {
-        render(template: "adminUserRegister")
+
     }
 
     @Secured("ROLE_ADMIN")
@@ -43,6 +63,6 @@ class UserController
     {
         User user = this.registerer.register(params.user.email, params.user.password, "ROLE_ADMIN", true)
 
-        render(template: "adminUserRegister")
+        redirect(controllerName: user, actionName: users())
     }
 }

@@ -1,10 +1,7 @@
 package order
 
-import product.Product
-
 class OrderItem
 {
-    static hasOne = [product: Product]
     static belongsTo = [order: Order]
 
     static constraints = {

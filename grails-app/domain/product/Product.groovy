@@ -1,14 +1,16 @@
 package product
 
-import order.OrderItem
-
 class Product
 {
     String name
     double price
     Date date
 
-    static belongsTo = [orderItem: OrderItem]
+    Product(String name, String price, String date) {
+        this.name = name
+        this.price = Double.valueOf(price)
+        this.date = Date.parse("yyy-mm-dd", date)
+    }
 
     static constraints = {
         name unique: true
