@@ -18,12 +18,20 @@
     %{--<button type="submit" class="btn btn-primary btn-block logout" th:text="#{ui.logout}"></button>--}%
 %{--</form>--}%
 
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="languages" default="Languages"/> <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <navBar:localeDropdownListItems uri="${request.forwardURI}"/>
+    </ul>
+</li>
+
 <h2 class="text-center"><g:message code="ui.products_index" /></h2>
 
 <div class="container vertical-center">
     <table class="table table-striped">
         <thead>
         <tr>
+            <th scope="col"></th>
             <th scope="col"><g:message code="ui.name"/></th>
             <th scope="col"><g:message code="ui.price"/></th>
             <th scope="col"><g:message code="ui.date"/></th>
@@ -31,6 +39,7 @@
         </thead>
         <tbody>
             <g:each in="${products}" var="product" status="i">
+                <td>${i+1}</td>
                 <td>${product.name}</td>
                 <td>${product.price}</td>
                 <td>${product.date}</td>

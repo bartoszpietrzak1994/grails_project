@@ -9,7 +9,7 @@ class Product
     Product(String name, String price, String date) {
         this.name = name
         this.price = Double.valueOf(price)
-        this.date = Date.parse("yyy-mm-dd", date)
+        this.date = Date.parse("yyyy-MM-dd", date)
     }
 
     static constraints = {

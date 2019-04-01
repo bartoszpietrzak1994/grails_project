@@ -19,6 +19,9 @@
     %{--<button type="submit" class="btn btn-primary btn-block logout" th:text="#{ui.logout}"></button>--}%
 %{--</form>--}%
 
+
+<navBar:localeDropdownListItems uri="${request.forwardURI}"/>
+
 <h2 class="text-center" th:text="#{ui.add_new_product}"></h2>
 
 <div class="container vertical-center">
