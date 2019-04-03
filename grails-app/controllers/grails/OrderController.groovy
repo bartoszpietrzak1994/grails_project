@@ -3,12 +3,17 @@ package grails
 import grails.plugin.springsecurity.annotation.Secured
 import order.Order
 import order.OrderItem
+import order.PdfFileSender
 import product.Product
+import user.CurrentUserProvider
 import user.User
 
 class OrderController
 {
-    @Secured("ROLE_ADMIN")
+    CurrentUserProvider currentUserProvider
+    PdfFileSender pdfFileSender
+
+//    @Secured("ROLE_ADMIN")
     def orders()
     {
         def orderList = Order.list()
@@ -17,7 +22,7 @@ class OrderController
         ]
     }
 
-    @Secured(["ROLE_USER", "ROLE_ADMIN"])
+//    @Secured(["ROLE_USER", "ROLE_ADMIN"])
     def orderDetails()
     {
         def order = Order.findById(params.order.id)
@@ -26,7 +31,7 @@ class OrderController
         ]
     }
 
-    @Secured("ROLE_USER")
+//    @Secured("ROLE_USER")
     def place()
     {
         def product = Product.findByName(params.productName)
@@ -34,10 +39,24 @@ class OrderController
         def order = new Order()
 
         orderItem.setOrder(order)
-        order.setUser(User.findByUsername(params.userName))
+
+        def userEmail = currentUserProvider.getCurrentlyLoggedUsersEmail()
+        order.setUser(User.findByEmail(userEmail))
         order.getOrderItems().add(orderItem)
         order.setNumber(UUID.randomUUID().toString())
 
-        // todo pdf
+        pdfFileSender.sendPdfFile(userEmail, order)
+    }
+
+//    @Secured(["ROLE_USER", "ROLE_ADMIN"])
+    def usersOrders()
+    {
+        def userEmail = currentUserProvider.getCurrentlyLoggedUsersEmail()
+        def user = User.findByEmail(userEmail)
+
+        def orders = Order.findAllByUser(user)
+        [
+                orders: orders
+        ]
     }
 }

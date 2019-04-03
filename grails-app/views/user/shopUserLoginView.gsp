@@ -13,7 +13,7 @@
                 <g:message code="ui.signin" />
             </h2>
             <br />
-            <g:form url="/login">
+            <g:form url="/shop/login">
                 <div class="form-group">
                     <input type="text" name="email" placeholder="${g.message(code: 'ui.email')}" class="form-control">
                 </div>
@@ -23,8 +23,11 @@
                 <g:submitButton name="signin" value="${g.message(code: 'ui.signin')}" class="btn btn-primary btn-block"></g:submitButton>
             </g:form>
 
-            <g:link controller="user" action="shopUserRegisterView">
+            <g:link url="/shop/register">
                 <button class="btn btn-primary btn-block" ><g:message code="ui.register"/></button>
+            </g:link>
+            <g:link url="/admin/login">
+                <button class="btn btn-primary btn-block" ><g:message code="ui.admin_login"/></button>
             </g:link>
         </div>
     </div>

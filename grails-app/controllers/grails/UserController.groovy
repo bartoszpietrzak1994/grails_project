@@ -11,6 +11,7 @@ class UserController
     Registerer registerer
     VerificationTokenSender verificationTokenSender
 
+    @Secured("ROLE_ADMIN")
     def users()
     {
         def usersList = User.list()
@@ -29,7 +30,7 @@ class UserController
 
         verificationTokenSender.generateAndSendTokenForUser(user)
 
-        redirect(controllerName: user, actionName: users())
+        redirect(controllerName: user, actionName: shopUserIndex())
     }
 
     def confirmRegistration()
@@ -50,19 +51,24 @@ class UserController
         user.setEnabled(true)
 
         user.save(flush: true, failOnError: true)
+
+        redirect(controllerName: user, actionName: shopUserLoginView())
     }
 
-    @Secured("ROLE_ADMIN")
-    def adminUserRegisterView()
-    {
+    def adminUserRegisterView() {}
 
-    }
+    def adminUserLoginView() {}
 
-    @Secured("ROLE_ADMIN")
     def adminUserRegister()
     {
         User user = this.registerer.register(params.user.email, params.user.password, "ROLE_ADMIN", true)
 
         redirect(controllerName: user, actionName: users())
     }
+
+    @Secured("ROLE_USER")
+    def shopUserIndex() {}
+
+    @Secured("ROLE_ADMIN")
+    def adminUserIndex() {}
 }

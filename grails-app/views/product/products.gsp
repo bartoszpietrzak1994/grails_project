@@ -35,6 +35,7 @@
             <th scope="col"><g:message code="ui.name"/></th>
             <th scope="col"><g:message code="ui.price"/></th>
             <th scope="col"><g:message code="ui.date"/></th>
+            <th scope="col"><g:message code="ui.actions"/></th>
         </tr>
         </thead>
         <tbody>
@@ -43,6 +44,12 @@
                 <td>${product.name}</td>
                 <td>${product.price}</td>
                 <td>${product.date}</td>
+                <td>
+                    <g:form controller="order" action="place">
+                        <g:hiddenField name="productName" value="${product.name}" />
+                        <g:submitButton name="buy" value="${g.message(code: 'ui.buy')}" class="btn btn-primary btn-block" />
+                    </g:form>
+                </td>
             </g:each>
         </tbody>
     </table>

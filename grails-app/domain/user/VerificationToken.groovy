@@ -25,6 +25,21 @@ class VerificationToken
         this.expiryDate = calculateExpiryDate()
     }
 
+    User getUser()
+    {
+        return user
+    }
+
+    String getToken()
+    {
+        return token
+    }
+
+    Date getExpiryDate()
+    {
+        return expiryDate
+    }
+
     private static Date calculateExpiryDate()
     {
         Calendar calendar = Calendar.getInstance()

@@ -5,8 +5,17 @@ import product.Product
 
 class ProductController
 {
-//    @Secured(["ROLE_USER", "ROLE_ADMIN"])
-    def products()
+//    @Secured("ROLE_ADMIN")
+    def adminProductsView()
+    {
+        def productList = Product.list()
+        [
+                products: productList
+        ]
+    }
+
+//    @Secured("ROLE_USER")
+    def customerProductsView()
     {
         def productList = Product.list()
         [

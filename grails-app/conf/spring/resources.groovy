@@ -1,7 +1,9 @@
 package spring
 
+import order.PdfFileSender
 import org.springframework.mail.javamail.JavaMailSenderImpl
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import user.CurrentUserProvider
 import user.Registerer
 import user.UserPasswordEncoderListener
 import user.VerificationTokenSender
@@ -29,4 +31,8 @@ beans = {
         mailSender = ref('mailSender')
     }
     bCryptPasswordEncoder(BCryptPasswordEncoder)
+    currentUserProvider(CurrentUserProvider)
+    pdfFileSender(PdfFileSender) {
+        mailSender = ref('mailSender')
+    }
 }

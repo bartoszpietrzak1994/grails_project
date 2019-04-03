@@ -2,15 +2,10 @@ package i18n
 
 import grails.config.Config
 import grails.core.support.GrailsConfigurationAware
-import org.springframework.context.MessageSource
 
-class LocaleNavbarTagLib implements GrailsConfigurationAware {
-
+class LocaleNavbarTagLib implements GrailsConfigurationAware
+{
     static namespace = 'navBar'
-
-    static defaultEncodeAs = [taglib: 'none']
-
-    MessageSource messageSource
 
     List<String> languages
 
