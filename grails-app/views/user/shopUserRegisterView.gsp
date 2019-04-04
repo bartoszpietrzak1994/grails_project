@@ -2,11 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title text="${g.message(code: 'ui.signin')}"></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 </head>
 <body>
+
+<navBar:localeDropdownListItems uri="${request.forwardURI}"/>
+
 <div class="container vertical-center">
     <div class="login-form">
         <h2 class="text-center">
@@ -26,7 +28,7 @@
         %{--captcha--}%
         </g:form>
 
-        <g:link controller="user" action="shopUserLoginView">
+        <g:link url="/shop/login">
             <button class="btn btn-primary btn-block" ><g:message code="ui.login"/></button>
         </g:link>
     </div>

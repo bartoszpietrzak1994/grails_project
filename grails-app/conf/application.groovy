@@ -23,3 +23,7 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 
 grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+grails.plugins.springsecurity.auth.loginFormUrl = "/login"
+grails.plugin.springsecurity.useSecurityEventListener = true
+grails.plugins.springsecurity.successHandler.defaultTargetUrl = 'user/shopUserIndex'
+

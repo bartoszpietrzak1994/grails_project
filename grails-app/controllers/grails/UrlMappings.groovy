@@ -3,14 +3,9 @@ package grails
 class UrlMappings {
 
     static mappings = {
-        "/shop/login" {
+        "/login" {
             controller = { "user" }
-            action = [ GET: "shopUserLoginView" ]
-        }
-
-        "/shop/login" {
-            controller = { "user" }
-            action = [ POST: "Logging" ]
+            action = [ GET: "loginView" ]
         }
 
         "/shop/register" {
@@ -18,9 +13,9 @@ class UrlMappings {
             action = [ GET: "shopUserRegisterView" ]
         }
 
-        "/admin/login" {
+        "/shop/index" {
             controller = { "user" }
-            action = [ GET: "adminUserLoginView" ]
+            action = [ GET: "shopUserIndex" ]
         }
 
         "/admin/register" {
@@ -38,12 +33,17 @@ class UrlMappings {
             action = [ GET: "users" ]
         }
 
+        "/admin/index" {
+            controller = { "user" }
+            action = [ GET: "adminUserIndex" ]
+        }
+
         "/registrationConfirm/*" {
             controller = { "user" }
             action = [ POST: "confirmRegistration" ]
         }
 
-        "/" (uri: "/shop/login")
+        "/" (uri: "/login")
         "500"(view:'/error')
         "404"(view:'/error')
     }

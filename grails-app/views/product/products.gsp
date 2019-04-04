@@ -18,12 +18,7 @@
     %{--<button type="submit" class="btn btn-primary btn-block logout" th:text="#{ui.logout}"></button>--}%
 %{--</form>--}%
 
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="languages" default="Languages"/> <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-        <navBar:localeDropdownListItems uri="${request.forwardURI}"/>
-    </ul>
-</li>
+<navBar:localeDropdownListItems uri="${request.forwardURI}"/>
 
 <h2 class="text-center"><g:message code="ui.products_index" /></h2>
 

@@ -1,10 +1,12 @@
 package spring
 
+import grails.plugin.springsecurity.SpringSecurityUtils
 import order.PdfFileSender
 import org.springframework.mail.javamail.JavaMailSenderImpl
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import user.CurrentUserProvider
 import user.Registerer
+import user.TicketAppAuthenticationSuccessHandler
 import user.UserPasswordEncoderListener
 import user.VerificationTokenSender
 
@@ -34,5 +36,13 @@ beans = {
     currentUserProvider(CurrentUserProvider)
     pdfFileSender(PdfFileSender) {
         mailSender = ref('mailSender')
+    }
+    authenticationSuccessHandler(TicketAppAuthenticationSuccessHandler) {
+        def conf = SpringSecurityUtils.securityConfig
+        /* Configuring the bean */
+        defaultTargetUrl = conf.successHandler.defaultTargetUrl
+        alwaysUseDefaultTargetUrl = conf.successHandler.alwaysUseDefault
+        targetUrlParameter = conf.successHandler.targetUrlParameter
+        useReferer = conf.successHandler.useReferer
     }
 }

@@ -1,5 +1,6 @@
 package grails
 
+
 import user.User
 import user.UserRole
 import user.UserUserRole
@@ -7,6 +8,7 @@ import user.UserUserRole
 class BootStrap {
 
     def init = { servletContext ->
+
         if (UserRole.count() == 0) {
             new UserRole(authority: "ROLE_USER").save(flush: true, failOnError: true)
             new UserRole(authority: "ROLE_ADMIN").save(flush: true, failOnError: true)

@@ -20,9 +20,9 @@ class UserController
         ]
     }
 
-    def shopUserRegisterView() {}
+    def loginView() {}
 
-    def shopUserLoginView() {}
+    def shopUserRegisterView() {}
 
     def shopUserRegister()
     {
@@ -54,10 +54,6 @@ class UserController
 
         redirect(controllerName: user, actionName: shopUserLoginView())
     }
-
-    def adminUserRegisterView() {}
-
-    def adminUserLoginView() {}
 
     def adminUserRegister()
     {

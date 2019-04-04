@@ -2,18 +2,20 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    %{--<title text="${g.message(code: 'ui.signin')}"></title> todo--}%
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 </head>
 <body>
+
+<navBar:localeDropdownListItems uri="${request.forwardURI}"/>
+
     <div class="container vertical-center">
         <div class="login-form">
             <h2 class="text-center">
                 <g:message code="ui.signin" />
             </h2>
             <br />
-            <g:form url="/shop/login">
+            <g:form url="/login">
                 <div class="form-group">
                     <input type="text" name="email" placeholder="${g.message(code: 'ui.email')}" class="form-control">
                 </div>
@@ -25,9 +27,6 @@
 
             <g:link url="/shop/register">
                 <button class="btn btn-primary btn-block" ><g:message code="ui.register"/></button>
-            </g:link>
-            <g:link url="/admin/login">
-                <button class="btn btn-primary btn-block" ><g:message code="ui.admin_login"/></button>
             </g:link>
         </div>
     </div>
