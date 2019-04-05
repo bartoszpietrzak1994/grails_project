@@ -3,13 +3,19 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'user.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'user.UserUserRole'
 grails.plugin.springsecurity.authority.className = 'user.UserRole'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	[pattern: '/',               access: ['permitAll']],
-	[pattern: '/error',          access: ['permitAll']],
-	[pattern: '/assets/**',      access: ['permitAll']],
-	[pattern: '/**/js/**',       access: ['permitAll']],
-	[pattern: '/**/css/**',      access: ['permitAll']],
-	[pattern: '/**/images/**',   access: ['permitAll']],
-	[pattern: '/**/favicon.ico', access: ['permitAll']]
+	[pattern: '/',               		 access: ['permitAll']],
+	[pattern: '/login/**',          	 access: ['permitAll']],
+	[pattern: '/shop/register',  		 access: ['permitAll']],
+	[pattern: '/admin/register', 		 access: ['permitAll']],
+	[pattern: '/admin/**', 				 access: ['permitAll']],
+	[pattern: '/shop/**', 				 access: ['permitAll']],
+	[pattern: '/registrationConfirm/**', access: ['permitAll']],
+	[pattern: '/error',          		 access: ['permitAll']],
+	[pattern: '/assets/**',      		 access: ['permitAll']],
+	[pattern: '/**/js/**',       		 access: ['permitAll']],
+	[pattern: '/**/css/**',      		 access: ['permitAll']],
+	[pattern: '/**/images/**',   		 access: ['permitAll']],
+	[pattern: '/**/favicon.ico', 		 access: ['permitAll']]
 ]
 
 grails.plugin.springsecurity.filterChain.chainMap = [
@@ -18,12 +24,16 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**/css/**',      filters: 'none'],
 	[pattern: '/**/images/**',   filters: 'none'],
 	[pattern: '/**/favicon.ico', filters: 'none'],
-	[pattern: '/**',             filters: 'JOINED_FILTERS']
+	[pattern: '/shop/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
+	[pattern: '/admin/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
+	[pattern: '/registrationConfirm/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter']
 ]
 
 grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.fii.rejectPublicInvocations = false
-grails.plugins.springsecurity.auth.loginFormUrl = "/login"
+grails.plugin.springsecurity.auth.loginFormUrl = "/login"
 grails.plugin.springsecurity.useSecurityEventListener = true
-grails.plugins.springsecurity.successHandler.defaultTargetUrl = 'user/shopUserIndex'
-
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/dupa"
+grails.plugin.springsecurity.successHandler.alwaysUseDefault = false
+grails.plugin.springsecurity.logout.afterLogoutUrl = "/"
+grails.plugin.springsecurity.failureHandler.defaultFailureUrl = "/error"

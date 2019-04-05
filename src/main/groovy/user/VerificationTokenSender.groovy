@@ -12,7 +12,9 @@ class VerificationTokenSender
     {
         String token = UUID.randomUUID()
 
-        def verificationToken = new VerificationToken(user, token)
+        def verificationToken = new VerificationToken()
+        verificationToken.setUser(user)
+        verificationToken.setToken(token)
         verificationToken.save(flush: true, failOnError: true)
 
         String recipientAddress = user.getEmail()

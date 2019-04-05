@@ -19,4 +19,16 @@ class Product
     static mapping = {
         id(generator: 'org.hibernate.id.enhanced.SequenceStyleGenerator')
     }
+
+    String getName() {
+        return name
+    }
+
+    double getPrice() {
+        return price
+    }
+
+    Date getDate() {
+        return date
+    }
 }

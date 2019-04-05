@@ -1,17 +1,16 @@
 package grails
 
+
 import grails.plugin.springsecurity.annotation.Secured
-import user.Registerer
-import user.User
-import user.VerificationToken
-import user.VerificationTokenSender
+import user.*
 
 class UserController
 {
     Registerer registerer
     VerificationTokenSender verificationTokenSender
+    CurrentUserProvider currentUserProvider
 
-    @Secured("ROLE_ADMIN")
+//    @Secured("ROLE_ADMIN")
     def users()
     {
         def usersList = User.list()
@@ -20,10 +19,13 @@ class UserController
         ]
     }
 
+//    @Secured("permitAll")
     def loginView() {}
 
+//    @Secured("permitAll")
     def shopUserRegisterView() {}
 
+//    @Secured("permitAll")
     def shopUserRegister()
     {
         User user = this.registerer.register(params.email, params.password, "ROLE_USER", false)
@@ -33,9 +35,10 @@ class UserController
         redirect(controllerName: user, actionName: shopUserIndex())
     }
 
-    def confirmRegistration()
+//    @Secured("permitAll")
+    def confirmRegistration(String token)
     {
-        VerificationToken verificationToken = VerificationToken.findByToken(params.token)
+        VerificationToken verificationToken = VerificationToken.findByToken(token)
 
         if (verificationToken == null) {
             redirect(controllerUri: '/error')
@@ -55,6 +58,7 @@ class UserController
         redirect(controllerName: user, actionName: shopUserLoginView())
     }
 
+//    @Secured("permitAll")
     def adminUserRegister()
     {
         User user = this.registerer.register(params.user.email, params.user.password, "ROLE_ADMIN", true)
@@ -62,9 +66,9 @@ class UserController
         redirect(controllerName: user, actionName: users())
     }
 
-    @Secured("ROLE_USER")
+//    @Secured("ROLE_USER")
     def shopUserIndex() {}
 
-    @Secured("ROLE_ADMIN")
+//    @Secured("ROLE_ADMIN")
     def adminUserIndex() {}
 }

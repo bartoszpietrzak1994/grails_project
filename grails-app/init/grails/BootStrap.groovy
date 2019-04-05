@@ -1,6 +1,5 @@
 package grails
 
-
 import user.User
 import user.UserRole
 import user.UserUserRole
@@ -23,8 +22,8 @@ class BootStrap {
             ).save(flush: true, failOnError: true)
 
             new User(
-                    username: "sample_user@example.com",
-                    email: "sample_user@example.com",
+                    username: "bartosz.pietrzak1994@gmail.com",
+                    email: "bartosz.pietrzak1994@gmail.com",
                     password: "sample",
                     enabled: true
             ).save(flush: true, failOnError: true)
@@ -36,7 +35,7 @@ class BootStrap {
         ).save(flush: true, failOnError: true)
 
         new UserUserRole(
-                user: User.findByUsername("sample_user@example.com"),
+                user: User.findByUsername("bartosz.pietrzak1994@gmail.com"),
                 userRole: UserRole.findByAuthority("ROLE_USER")
         ).save(flush: true, failOnError: true)
     }

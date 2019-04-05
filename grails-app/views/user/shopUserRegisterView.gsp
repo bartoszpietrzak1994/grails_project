@@ -15,7 +15,7 @@
             <g:message code="ui.register" />
         </h2>
         <br />
-        <g:form controller="user" action="shopUserRegister">
+        <g:form url="/shop/register">
             <div class="form-group">
                 <input type="text" name="email" placeholder="${g.message(code: 'ui.email')}" class="form-control">
             </div>
@@ -28,7 +28,7 @@
         %{--captcha--}%
         </g:form>
 
-        <g:link url="/shop/login">
+        <g:link url="/login">
             <button class="btn btn-primary btn-block" ><g:message code="ui.login"/></button>
         </g:link>
     </div>

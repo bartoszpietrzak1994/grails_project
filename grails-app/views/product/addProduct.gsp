@@ -8,17 +8,9 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-%{--todo logout--}%
-%{--<form action="/logout" method="post">--}%
-    %{--<input--}%
-            %{--type="hidden"--}%
-            %{--th:name="${_csrf.parameterName}"--}%
-            %{--th:value="${_csrf.token}"--}%
-    %{--/>--}%
-
-    %{--<button type="submit" class="btn btn-primary btn-block logout" th:text="#{ui.logout}"></button>--}%
-%{--</form>--}%
-
+<g:form url="/logout" method="post">
+    <button type="submit" class="btn btn-primary btn-block logout"><g:message code="ui.logout" /></button>
+</g:form>
 
 <navBar:localeDropdownListItems uri="${request.forwardURI}"/>
 
@@ -28,7 +20,7 @@
     <div class="add-product-form">
         <div class="alert alert-danger validation-error" role="alert"><g:message message="${validationMessage}"/></div>
 
-        <g:form controller="product" action="save">
+        <g:form url="/admin/products/add" method="post">
             <div class="form-group">
                 <input type="text" name="name" placeholder="${g.message(code: 'ui.name')}" class="form-control">
             </div>

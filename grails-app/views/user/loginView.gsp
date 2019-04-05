@@ -15,7 +15,7 @@
                 <g:message code="ui.signin" />
             </h2>
             <br />
-            <g:form url="/login">
+            <g:form controller="LoginController" action="auth">
                 <div class="form-group">
                     <input type="text" name="email" placeholder="${g.message(code: 'ui.email')}" class="form-control">
                 </div>

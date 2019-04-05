@@ -14,7 +14,15 @@ class OrderController
     PdfFileSender pdfFileSender
 
 //    @Secured("ROLE_ADMIN")
-    def orders()
+    def shopUserOrders()
+    {
+        def orderList = Order.list()
+        [
+                orders: orderList
+        ]
+    }
+
+    def adminUserOrders()
     {
         def orderList = Order.list()
         [
@@ -23,11 +31,27 @@ class OrderController
     }
 
 //    @Secured(["ROLE_USER", "ROLE_ADMIN"])
-    def orderDetails()
+    def shopUserOrderDetails()
     {
-        def order = Order.findById(params.order.id)
+        def order = Order.findByNumber(params.number)
+        def orderItem = OrderItem.findByOrder(order)
         [
-                order: order
+                order: order,
+                total: orderItem.getProduct().getPrice(),
+                eventName: orderItem.getProduct().getName(),
+                eventDate: orderItem.getProduct().getDate().format("yyyy-MM-dd")
+        ]
+    }
+
+    def adminUserOrderDetails()
+    {
+        def order = Order.findByNumber(params.number)
+        def orderItem = OrderItem.findByOrder(order)
+        [
+                order: order,
+                total: orderItem.getProduct().getPrice(),
+                eventName: orderItem.getProduct().getName(),
+                eventDate: orderItem.getProduct().getDate().format("yyyy-MM-dd")
         ]
     }
 
@@ -36,16 +60,21 @@ class OrderController
     {
         def product = Product.findByName(params.productName)
         def orderItem = new OrderItem(product: product)
+//        def userEmail = currentUserProvider.getCurrentlyLoggedUsersEmail()
+        def userEmail = "bartosz.pietrzak1994@gmail.com"
+
         def order = new Order()
-
         orderItem.setOrder(order)
-
-        def userEmail = currentUserProvider.getCurrentlyLoggedUsersEmail()
+        orderItem.setProduct(product)
+        order.setOrderItem(orderItem)
         order.setUser(User.findByEmail(userEmail))
-        order.getOrderItems().add(orderItem)
         order.setNumber(UUID.randomUUID().toString())
 
+        order.save(flush: true, failOnError: true)
+
         pdfFileSender.sendPdfFile(userEmail, order)
+
+        redirect(uri: '/shop/orders/all')
     }
 
 //    @Secured(["ROLE_USER", "ROLE_ADMIN"])

@@ -1,6 +1,6 @@
 package grails
 
-import grails.plugin.springsecurity.annotation.Secured
+
 import product.Product
 
 class ProductController
@@ -15,7 +15,7 @@ class ProductController
     }
 
 //    @Secured("ROLE_USER")
-    def customerProductsView()
+    def shopProductsView()
     {
         def productList = Product.list()
         [
@@ -24,10 +24,7 @@ class ProductController
     }
 
 //    @Secured("ROLE_ADMIN")
-    def addProduct()
-    {
-        render(template: 'addProduct')
-    }
+    def addProduct() {}
 
 //    @Secured("ROLE_ADMIN")
     def save()
@@ -42,7 +39,7 @@ class ProductController
             return
         }
 
-        product.save(flush: true)
-        redirect(controller: 'product', action: 'products')
+        product.save(flush: true, failOnError: true)
+        redirect(uri: '/admin/products/all')
     }
 }

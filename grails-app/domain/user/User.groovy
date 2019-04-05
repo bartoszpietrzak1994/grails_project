@@ -20,8 +20,6 @@ class User implements Serializable {
     boolean accountLocked
     boolean passwordExpired
 
-    static hasMany = [orders: Order]
-
     Set<UserRole> getAuthorities() {
         (UserUserRole.findAllByUser(this) as List<UserUserRole>)*.userRole as Set<UserRole>
     }

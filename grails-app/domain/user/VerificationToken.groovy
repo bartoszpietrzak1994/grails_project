@@ -6,8 +6,7 @@ class VerificationToken
 {
     private String token
     private Date expiryDate
-
-    static belongsTo = [user:User]
+    private User user
 
     static constraints = {
     }
@@ -16,12 +15,8 @@ class VerificationToken
         id(generator: 'org.hibernate.id.enhanced.SequenceStyleGenerator')
     }
 
-    VerificationToken(){}
-
-    VerificationToken(User user, String token)
+    VerificationToken()
     {
-        this.user = user
-        this.token = token
         this.expiryDate = calculateExpiryDate()
     }
 
@@ -38,6 +33,14 @@ class VerificationToken
     Date getExpiryDate()
     {
         return expiryDate
+    }
+
+    void setToken(String token) {
+        this.token = token
+    }
+
+    void setUser(User user) {
+        this.user = user
     }
 
     private static Date calculateExpiryDate()

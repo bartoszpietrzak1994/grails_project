@@ -7,16 +7,9 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 </head>
 <body>
-%{--todo logout--}%
-%{--<form action="/logout" method="post">--}%
-    %{--<input--}%
-            %{--type="hidden"--}%
-            %{--th:name="${_csrf.parameterName}"--}%
-            %{--th:value="${_csrf.token}"--}%
-    %{--/>--}%
-
-    %{--<button type="submit" class="btn btn-primary btn-block logout" th:text="#{ui.logout}"></button>--}%
-%{--</form>--}%
+<g:form url="/logout" method="post">
+    <button type="submit" class="btn btn-primary btn-block logout"><g:message code="ui.logout" /></button>
+</g:form>
 
 <navBar:localeDropdownListItems uri="${request.forwardURI}"/>
 
@@ -40,7 +33,7 @@
                 <td>${product.price}</td>
                 <td>${product.date}</td>
                 <td>
-                    <g:form controller="order" action="place">
+                    <g:form url="/shop/orders/place" method="post">
                         <g:hiddenField name="productName" value="${product.name}" />
                         <g:submitButton name="buy" value="${g.message(code: 'ui.buy')}" class="btn btn-primary btn-block" />
                     </g:form>
