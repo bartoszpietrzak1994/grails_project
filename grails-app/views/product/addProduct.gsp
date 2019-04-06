@@ -18,13 +18,6 @@
 
 <div class="container vertical-center">
     <div class="add-product-form">
-        %{--<g:hasErrors bean="${product}">--}%
-            %{--<ul>--}%
-                %{--<g:eachError var="error" bean="${product}">--}%
-                    %{--<li>${error}</li>--}%
-                %{--</g:eachError>--}%
-            %{--</ul>--}%
-        %{--</g:hasErrors>--}%
         <g:form url="/admin/products/add" method="post">
             <div class="form-group">
                 <label><g:message code="ui.name" /></label>

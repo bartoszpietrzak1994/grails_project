@@ -3,6 +3,7 @@ package spring
 import grails.plugin.springsecurity.SpringSecurityUtils
 import order.PdfFileSender
 import org.springframework.mail.javamail.JavaMailSenderImpl
+import recaptcha.ReCaptchaChecker
 import user.CurrentUserProvider
 import user.Registerer
 import user.TicketAppAuthenticationSuccessHandler
@@ -41,5 +42,8 @@ beans = {
         targetUrlParameter = conf.successHandler.targetUrlParameter
         useReferer = conf.successHandler.useReferer
         springSecurityService = ref('springSecurityService')
+    }
+    reCaptchaChecker(ReCaptchaChecker) {
+        secret = application.config.google.recaptcha.key.secret
     }
 }

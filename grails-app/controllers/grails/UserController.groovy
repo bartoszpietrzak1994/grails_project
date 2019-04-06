@@ -1,11 +1,12 @@
 package grails
 
-
+import recaptcha.ReCaptchaChecker
 import user.*
 
 class UserController
 {
     Registerer registerer
+    ReCaptchaChecker reCaptchaChecker
     VerificationTokenSender verificationTokenSender
 
 //    @Secured("ROLE_ADMIN")
@@ -29,6 +30,10 @@ class UserController
 //    @Secured("permitAll")
     def shopUserRegister()
     {
+        if (!this.reCaptchaChecker.verifyResponse((String) params.get("g-recaptcha-response"))) {
+            redirect(uri: "/login")
+        }
+
         User user = this.registerer.register(params.email, params.password, "ROLE_USER", false)
 
         verificationTokenSender.generateAndSendTokenForUser(user)

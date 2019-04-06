@@ -37,3 +37,6 @@ grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/dupa"
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = false
 grails.plugin.springsecurity.logout.afterLogoutUrl = "/"
 grails.plugin.springsecurity.failureHandler.defaultFailureUrl = "/error"
+
+google.recaptcha.key.site="6LeslJwUAAAAABEEPw7HUEYeZGAg0qnalQ-ksd-r"
+google.recaptcha.key.secret="6LeslJwUAAAAABEEPw7HUEYeZGAg0qnalQ-ksd-r"
