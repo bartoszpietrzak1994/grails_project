@@ -50,7 +50,7 @@ class PdfFileSender
         document.add(new Paragraph(order.getOrderItem().getProduct().getName(), font))
         document.add(new Paragraph(""))
         document.add(new Paragraph(""))
-        document.add(new Paragraph("Total price: " + order.getOrderItem().getProduct(), font))
+        document.add(new Paragraph("Total price: " + order.getOrderItem().getProduct().getPrice(), font))
         document.add(new Paragraph(""))
         document.add(new Paragraph(""))
         document.add(new Paragraph("Thank you for shopping with us!", font))

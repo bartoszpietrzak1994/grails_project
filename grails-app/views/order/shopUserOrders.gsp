@@ -36,7 +36,7 @@
                     <td>${order.number}</td>
                     <td>${order.user.email}</td>
                     <td>
-                        <g:link url="${g.createLink(controller: "order", action: "shopUserOrderDetails", params: [number: order.number])}">
+                        <g:link url="${g.createLink(uri: "/shop/orders/number/$order.number")}">
                             <g:message code="ui.orders_details" />
                         </g:link>
                     </td>

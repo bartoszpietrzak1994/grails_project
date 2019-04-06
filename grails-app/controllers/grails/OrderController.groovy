@@ -1,6 +1,6 @@
 package grails
 
-import grails.plugin.springsecurity.annotation.Secured
+
 import order.Order
 import order.OrderItem
 import order.PdfFileSender
