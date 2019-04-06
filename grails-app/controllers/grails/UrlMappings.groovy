@@ -64,7 +64,7 @@ class UrlMappings {
         }
 
         "/registrationConfirm/$token" (controller: "user") {
-            action = [ POST: "confirmRegistration" ]
+            action = [ GET: "confirmRegistration" ]
         }
 
         "/" (uri: "/login")

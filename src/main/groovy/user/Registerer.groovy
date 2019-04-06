@@ -1,6 +1,5 @@
 package user
 
-
 import org.springframework.transaction.annotation.Transactional
 
 class Registerer

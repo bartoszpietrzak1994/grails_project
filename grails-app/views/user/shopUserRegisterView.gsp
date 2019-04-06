@@ -18,10 +18,10 @@
         <br />
         <g:form url="/shop/register">
             <div class="form-group">
-                <input type="text" name="email" placeholder="${g.message(code: 'ui.email')}" class="form-control" autocomplete="false">
+                <input type="text" name="email" placeholder="${g.message(code: 'ui.email')}" class="form-control" autocomplete="off">
             </div>
             <div class="form-group">
-                <input type="password" name="password" placeholder="${g.message(code: 'ui.password')}" class="form-control" autocomplete="false">
+                <input type="password" name="password" placeholder="${g.message(code: 'ui.password')}" class="form-control" autocomplete="off">
             </div>
 
             <div class="form-group">

@@ -1,9 +1,8 @@
 package user
 
+import grails.compiler.GrailsCompileStatic
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
-import grails.compiler.GrailsCompileStatic
-import order.Order
 
 @GrailsCompileStatic
 @EqualsAndHashCode(includes='username')

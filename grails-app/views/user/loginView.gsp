@@ -17,10 +17,10 @@
             <br />
             <g:form controller="LoginController" action="auth">
                 <div class="form-group">
-                    <input type="text" name="email" placeholder="${g.message(code: 'ui.email')}" class="form-control" autocomplete="false">
+                    <input type="text" name="email" placeholder="${g.message(code: 'ui.email')}" class="form-control" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" placeholder="${g.message(code: 'ui.password')}" class="form-control" autocomplete="false">
+                    <input type="password" name="password" placeholder="${g.message(code: 'ui.password')}" class="form-control" autocomplete="off">
                 </div>
                 <g:submitButton name="signin" value="${g.message(code: 'ui.signin')}" class="btn btn-primary btn-block"></g:submitButton>
             </g:form>

@@ -22,21 +22,18 @@
             <div class="form-group">
                 <label><g:message code="ui.name" /></label>
                 <g:renderErrors bean="${product}" as="list" field="name" />
-                <g:textField name="name" class="form-control" />
-                %{--<input type="text" name="name" placeholder="${g.message(code: 'ui.name')}" class="form-control" autocomplete="false">--}%
+                <g:textField name="name" class="form-control" autocomplete="off" />
             </div>
             <div class="form-group">
                 <label><g:message code="ui.price" /></label>
                 <g:renderErrors bean="${product}" as="list" field="price" />
-                <g:textField name="price" class="form-control" />
-                %{--<input type="text" name="price" placeholder="${g.message(code: 'ui.price')}" class="form-control" autocomplete="false">--}%
+                <g:textField name="price" class="form-control" autocomplete="off" />
             </div>
             <div class="form-group">
                 <label><g:message code="ui.date" /></label>
                 <br />
                 <g:renderErrors bean="${product}" as="list" field="date"/>
                 <g:datePicker name="date" precision="day" class="form-control" />
-                %{--<input type="date" name="date" placeholder="${g.message(code: 'ui.date')}" class="form-control" autocomplete="false">--}%
             </div>
             <g:submitButton name="saveProduct" value="${g.message(code: 'ui.add')}" class="btn btn-primary btn-block"></g:submitButton>
         </g:form>

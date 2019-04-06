@@ -31,7 +31,9 @@ class UserController
     def shopUserRegister()
     {
         if (!this.reCaptchaChecker.verifyResponse((String) params.get("g-recaptcha-response"))) {
-            redirect(uri: "/login")
+            redirect(uri: "/shop/register")
+
+            return
         }
 
         User user = this.registerer.register(params.email, params.password, "ROLE_USER", false)
@@ -42,17 +44,21 @@ class UserController
     }
 
 //    @Secured("permitAll")
-    def confirmRegistration(String token)
+    def confirmRegistration()
     {
-        VerificationToken verificationToken = VerificationToken.findByToken(token)
+        VerificationToken verificationToken = VerificationToken.findByToken(params.token)
 
         if (verificationToken == null) {
             redirect(controllerUri: '/error')
+
+            return
         }
 
         Calendar cal = Calendar.getInstance()
         if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
             redirect(controllerUri: '/error')
+
+            return
         }
 
         User user = verificationToken.getUser()
@@ -67,6 +73,10 @@ class UserController
 //    @Secured("permitAll")
     def adminUserRegister()
     {
+        if (!this.reCaptchaChecker.verifyResponse((String) params.get("g-recaptcha-response"))) {
+            redirect(uri: "/admin/register")
+        }
+
         User user = this.registerer.register(params.user.email, params.user.password, "ROLE_ADMIN", true)
 
         redirect(controllerName: user, actionName: users())
