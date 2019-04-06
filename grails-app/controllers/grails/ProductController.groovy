@@ -29,17 +29,16 @@ class ProductController
 //    @Secured("ROLE_ADMIN")
     def save()
     {
-        def product = new Product(params.name, params.price, params.date)
+        def product = new Product(params)
 
         product.validate()
 
         if (product.hasErrors()) {
             render(view: 'addProduct', model: [product: product])
-
-            return
         }
-
-        product.save(flush: true, failOnError: true)
-        redirect(uri: '/admin/products/all')
+        else {
+            product.save(flush: true, failOnError: true)
+            redirect(uri: '/admin/products/all')
+        }
     }
 }

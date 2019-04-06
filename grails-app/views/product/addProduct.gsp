@@ -18,30 +18,36 @@
 
 <div class="container vertical-center">
     <div class="add-product-form">
-        <div class="alert alert-danger validation-error" role="alert"><g:message message="${validationMessage}"/></div>
-
+        %{--<g:hasErrors bean="${product}">--}%
+            %{--<ul>--}%
+                %{--<g:eachError var="error" bean="${product}">--}%
+                    %{--<li>${error}</li>--}%
+                %{--</g:eachError>--}%
+            %{--</ul>--}%
+        %{--</g:hasErrors>--}%
         <g:form url="/admin/products/add" method="post">
             <div class="form-group">
-                <input type="text" name="name" placeholder="${g.message(code: 'ui.name')}" class="form-control">
+                <label><g:message code="ui.name" /></label>
+                <g:renderErrors bean="${product}" as="list" field="name" />
+                <g:textField name="name" class="form-control" />
+                %{--<input type="text" name="name" placeholder="${g.message(code: 'ui.name')}" class="form-control" autocomplete="false">--}%
             </div>
             <div class="form-group">
-                <input type="text" name="price" placeholder="${g.message(code: 'ui.price')}" class="form-control">
+                <label><g:message code="ui.price" /></label>
+                <g:renderErrors bean="${product}" as="list" field="price" />
+                <g:textField name="price" class="form-control" />
+                %{--<input type="text" name="price" placeholder="${g.message(code: 'ui.price')}" class="form-control" autocomplete="false">--}%
             </div>
             <div class="form-group">
-                <input type="date" name="date" placeholder="${g.message(code: 'ui.date')}" class="form-control">
+                <label><g:message code="ui.date" /></label>
+                <br />
+                <g:renderErrors bean="${product}" as="list" field="date"/>
+                <g:datePicker name="date" precision="day" class="form-control" />
+                %{--<input type="date" name="date" placeholder="${g.message(code: 'ui.date')}" class="form-control" autocomplete="false">--}%
             </div>
             <g:submitButton name="saveProduct" value="${g.message(code: 'ui.add')}" class="btn btn-primary btn-block"></g:submitButton>
         </g:form>
     </div>
 </div>
 </body>
-<script type="text/javascript">
-    $( document ).ready(function() {
-        var isSuccessful = [[${isSuccessful}]];
-
-        if (isSuccessful !== null && !isSuccessful) {
-            $('.validation-error').show();
-        }
-    });
-</script>
 </html>

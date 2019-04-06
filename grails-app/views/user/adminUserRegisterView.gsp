@@ -12,10 +12,10 @@
 <div class="container vertical-center">
     <div class="login-form">
         <h2 class="text-center">
-            <g:message code="ui.register_user" />
+            <g:message code="ui.register_admin" />
         </h2>
         <br />
-        <g:form url="/shop/register">
+        <g:form url="/admin/register">
             <div class="form-group">
                 <input type="text" name="email" placeholder="${g.message(code: 'ui.email')}" class="form-control" autocomplete="false">
             </div>

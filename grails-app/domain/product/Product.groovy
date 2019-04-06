@@ -6,14 +6,10 @@ class Product
     double price
     Date date
 
-    Product(String name, String price, String date) {
-        this.name = name
-        this.price = Double.valueOf(price)
-        this.date = Date.parse("yyyy-MM-dd", date)
-    }
-
     static constraints = {
-        name unique: true
+        name unique: true, blank: false
+        date min: (new Date().minus(1)), nullable: false
+        price min: 0d
     }
 
     static mapping = {

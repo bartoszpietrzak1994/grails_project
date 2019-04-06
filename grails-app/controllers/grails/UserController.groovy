@@ -1,14 +1,12 @@
 package grails
 
 
-import grails.plugin.springsecurity.annotation.Secured
 import user.*
 
 class UserController
 {
     Registerer registerer
     VerificationTokenSender verificationTokenSender
-    CurrentUserProvider currentUserProvider
 
 //    @Secured("ROLE_ADMIN")
     def users()
@@ -25,6 +23,9 @@ class UserController
 //    @Secured("permitAll")
     def shopUserRegisterView() {}
 
+    //    @Secured("permitAll")
+    def adminUserRegisterView() {}
+
 //    @Secured("permitAll")
     def shopUserRegister()
     {
@@ -32,7 +33,7 @@ class UserController
 
         verificationTokenSender.generateAndSendTokenForUser(user)
 
-        redirect(controllerName: user, actionName: shopUserIndex())
+        redirect(uri: "/shop/index")
     }
 
 //    @Secured("permitAll")
@@ -55,7 +56,7 @@ class UserController
 
         user.save(flush: true, failOnError: true)
 
-        redirect(controllerName: user, actionName: shopUserLoginView())
+        redirect(uri: "/login")
     }
 
 //    @Secured("permitAll")
