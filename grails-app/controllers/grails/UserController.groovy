@@ -1,5 +1,6 @@
 package grails
 
+import grails.plugin.springsecurity.annotation.Secured
 import recaptcha.ReCaptchaChecker
 import user.*
 
@@ -9,7 +10,7 @@ class UserController
     ReCaptchaChecker reCaptchaChecker
     VerificationTokenSender verificationTokenSender
 
-//    @Secured("ROLE_ADMIN")
+    @Secured("ROLE_ADMIN")
     def users()
     {
         def usersList = User.list()
@@ -18,16 +19,16 @@ class UserController
         ]
     }
 
-//    @Secured("permitAll")
+    @Secured("permitAll")
     def loginView() {}
 
-//    @Secured("permitAll")
+    @Secured("permitAll")
     def shopUserRegisterView() {}
 
-    //    @Secured("permitAll")
+        @Secured("permitAll")
     def adminUserRegisterView() {}
 
-//    @Secured("permitAll")
+    @Secured("permitAll")
     def shopUserRegister()
     {
         if (!this.reCaptchaChecker.verifyResponse((String) params.get("g-recaptcha-response"))) {
@@ -43,7 +44,7 @@ class UserController
         redirect(uri: "/shop/index")
     }
 
-//    @Secured("permitAll")
+    @Secured("permitAll")
     def confirmRegistration()
     {
         VerificationToken verificationToken = VerificationToken.findByToken(params.token)
@@ -70,7 +71,7 @@ class UserController
         redirect(uri: "/login")
     }
 
-//    @Secured("permitAll")
+    @Secured("permitAll")
     def adminUserRegister()
     {
         if (!this.reCaptchaChecker.verifyResponse((String) params.get("g-recaptcha-response"))) {
@@ -82,9 +83,9 @@ class UserController
         redirect(controllerName: user, actionName: users())
     }
 
-//    @Secured("ROLE_USER")
+    @Secured("ROLE_USER")
     def shopUserIndex() {}
 
-//    @Secured("ROLE_ADMIN")
+    @Secured("ROLE_ADMIN")
     def adminUserIndex() {}
 }

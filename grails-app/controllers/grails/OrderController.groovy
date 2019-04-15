@@ -1,6 +1,6 @@
 package grails
 
-
+import grails.plugin.springsecurity.annotation.Secured
 import order.Order
 import order.OrderItem
 import order.PdfFileSender
@@ -13,7 +13,7 @@ class OrderController
     CurrentUserProvider currentUserProvider
     PdfFileSender pdfFileSender
 
-//    @Secured("ROLE_ADMIN")
+    @Secured("ROLE_USER")
     def shopUserOrders()
     {
         def orderList = Order.list()
@@ -22,6 +22,7 @@ class OrderController
         ]
     }
 
+    @Secured("ROLE_ADMIN")
     def adminUserOrders()
     {
         def orderList = Order.list()
@@ -30,7 +31,7 @@ class OrderController
         ]
     }
 
-//    @Secured(["ROLE_USER", "ROLE_ADMIN"])
+    @Secured(["ROLE_USER", "ROLE_ADMIN"])
     def shopUserOrderDetails()
     {
         def order = Order.findByNumber(params.number)
@@ -43,6 +44,7 @@ class OrderController
         ]
     }
 
+    @Secured("ROLE_ADMIN")
     def adminUserOrderDetails()
     {
         def order = Order.findByNumber(params.number)
@@ -55,13 +57,12 @@ class OrderController
         ]
     }
 
-//    @Secured("ROLE_USER")
+    @Secured("ROLE_USER")
     def place()
     {
         def product = Product.findByName(params.productName)
         def orderItem = new OrderItem(product: product)
-//        def userEmail = currentUserProvider.getCurrentlyLoggedUsersEmail()
-        def userEmail = "bartosz.pietrzak1994@gmail.com"
+        def userEmail = currentUserProvider.getCurrentlyLoggedUsersEmail()
 
         def order = new Order()
         orderItem.setOrder(order)
@@ -77,7 +78,7 @@ class OrderController
         redirect(uri: '/shop/orders/all')
     }
 
-//    @Secured(["ROLE_USER", "ROLE_ADMIN"])
+    @Secured(["ROLE_USER", "ROLE_ADMIN"])
     def usersOrders()
     {
         def userEmail = currentUserProvider.getCurrentlyLoggedUsersEmail()

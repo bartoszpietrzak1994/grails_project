@@ -15,9 +15,9 @@
                 <g:message code="ui.signin" />
             </h2>
             <br />
-            <g:form controller="LoginController" action="auth">
+            <g:form url="/login/authenticate" method="POST">
                 <div class="form-group">
-                    <input type="text" name="email" placeholder="${g.message(code: 'ui.email')}" class="form-control" autocomplete="off">
+                    <input type="text" name="username" placeholder="${g.message(code: 'ui.email')}" class="form-control" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <input type="password" name="password" placeholder="${g.message(code: 'ui.password')}" class="form-control" autocomplete="off">
