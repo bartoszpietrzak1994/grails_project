@@ -72,7 +72,7 @@ class UrlMappings {
         }
 
         "/" (uri: "/login")
-        "500"(uri: '/error')
-        "404"(uri: '/error')
+        "500"(controller: 'error', action: 'error')
+        "404"(controller: 'error', action: 'error')
     }
 }

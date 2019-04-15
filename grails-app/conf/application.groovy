@@ -31,7 +31,7 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/registrationConfirm/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
 	[pattern: '/login/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
 	[pattern: '/logoff/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
-	[pattern: '/logout/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter']
+	[pattern: '/error/**', filters: 'none']
 ]
 
 grails.plugin.springsecurity.rejectIfNoRule = false
