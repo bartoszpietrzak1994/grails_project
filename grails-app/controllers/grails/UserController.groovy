@@ -78,7 +78,7 @@ class UserController
             redirect(uri: "/admin/register")
         }
 
-        User user = this.registerer.register(params.user.email, params.user.password, "ROLE_ADMIN", true)
+        User user = this.registerer.register(params.email, params.password, "ROLE_ADMIN", true)
 
         redirect(controllerName: user, actionName: users())
     }

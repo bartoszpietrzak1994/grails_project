@@ -3,6 +3,10 @@ package grails
 class UrlMappings {
 
     static mappings = {
+        "/error" (controller: "error") {
+            action = [ GET: 'error']
+        }
+
         "/login" (controller: "user") {
             action = [ GET: 'loginView' ]
         }
@@ -68,7 +72,7 @@ class UrlMappings {
         }
 
         "/" (uri: "/login")
-//        "500"(view:'/error')
-//        "404"(view:'/error')
+        "500"(uri: '/error')
+        "404"(uri: '/error')
     }
 }

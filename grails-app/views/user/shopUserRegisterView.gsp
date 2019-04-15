@@ -31,6 +31,10 @@
             <g:submitButton name="signin" value="${g.message(code: 'ui.register')}" class="btn btn-primary btn-block"></g:submitButton>
         </g:form>
 
+        <g:link url="/admin/register">
+            <button class="btn btn-primary btn-block" ><g:message code="ui.admin_register"/></button>
+        </g:link>
+
         <g:link url="/login">
             <button class="btn btn-primary btn-block" ><g:message code="ui.login"/></button>
         </g:link>

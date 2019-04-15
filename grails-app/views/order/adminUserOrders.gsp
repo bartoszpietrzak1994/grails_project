@@ -7,8 +7,8 @@
 </head>
 <body>
 
-<g:form url="/logout" method="post">
-    <button type="submit" class="btn btn-primary btn-block logout"><g:message code="ui.logout" /></button>
+<g:form url="/logoff" method="POST">
+    <button class="btn btn-primary btn-block logout"><g:message code="ui.logout" /></button>
 </g:form>
 
 <navBar:localeDropdownListItems uri="${request.forwardURI}"/>

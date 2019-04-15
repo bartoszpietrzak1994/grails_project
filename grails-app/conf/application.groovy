@@ -9,6 +9,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/admin/register', 		 access: ['permitAll']],
 	[pattern: '/admin/**', 				 access: ['permitAll']],
 	[pattern: '/shop/**', 				 access: ['permitAll']],
+	[pattern: '/error/**', 				 access: ['permitAll']],
+	[pattern: '/logoff/**', 			 access: ['permitAll']],
 	[pattern: '/registrationConfirm/**', access: ['permitAll']],
 	[pattern: '/error',          		 access: ['permitAll']],
 	[pattern: '/assets/**',      		 access: ['permitAll']],
@@ -27,7 +29,9 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/shop/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
 	[pattern: '/admin/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
 	[pattern: '/registrationConfirm/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
-	[pattern: '/login/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter']
+	[pattern: '/login/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
+	[pattern: '/logoff/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'],
+	[pattern: '/logout/**', filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter']
 ]
 
 grails.plugin.springsecurity.rejectIfNoRule = false

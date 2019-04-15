@@ -8,8 +8,9 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<g:form url="/logout" method="post">
-    <button type="submit" class="btn btn-primary btn-block logout"><g:message code="ui.logout" /></button>
+
+<g:form url="/logoff" method="POST">
+    <button class="btn btn-primary btn-block logout"><g:message code="ui.logout" /></button>
 </g:form>
 
 <navBar:localeDropdownListItems uri="${request.forwardURI}"/>
