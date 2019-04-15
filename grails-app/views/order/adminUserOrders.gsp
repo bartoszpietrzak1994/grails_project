@@ -15,33 +15,41 @@
 
 <h2 class="text-center"><g:message code="ui.orders_details" /></h2>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">
-            <g:message code="ui.number" />
-        </th>
-        <th scope="col">
-            <g:message code="ui.user" />
-        </th>
-        <th scope="col">
-            <g:message code="ui.total" />
-        </th>
-        <th scope="col">
-            <g:message code="ui.event" />
-        </th>
-        <th scope="col">
-            <g:message code="ui.date" />
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>${order.number}</td>
-        <td>${order.user.email}</td>
-        <td>${total}</td>
-        <td>${eventName}</td>
-        <td>${eventDate}</td>
-    </tr>
-    </tbody>
-</table>
+<div class="container vertical-center">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">
+                <g:message code="ui.number" />
+            </th>
+            <th scope="col">
+                <g:message code="ui.user" />
+            </th>
+            <th scope="col">
+                <g:message code="ui.total" />
+            </th>
+            <th scope="col">
+                <g:message code="ui.event" />
+            </th>
+            <th scope="col">
+                <g:message code="ui.date" />
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <g:each in="${orders}" var="order" status="i">
+            <tr>
+                <td>${i+1}</td>
+                <td>${order.number}</td>
+                <td>${order.user.email}</td>
+                <td>${order.orderItem.product.name}</td>
+                <td>
+                    <g:link url="${g.createLink(uri: "/admin/orders/number/$order.number")}">
+                        <g:message code="ui.orders_details" />
+                    </g:link>
+                </td>
+            </tr>
+        </g:each>
+        </tbody>
+    </table>
+</div>
