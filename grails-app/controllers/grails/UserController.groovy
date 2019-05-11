@@ -25,7 +25,7 @@ class UserController
     @Secured("permitAll")
     def shopUserRegisterView() {}
 
-        @Secured("permitAll")
+    @Secured("permitAll")
     def adminUserRegisterView() {}
 
     @Secured("permitAll")
@@ -76,6 +76,8 @@ class UserController
     {
         if (!this.reCaptchaChecker.verifyResponse((String) params.get("g-recaptcha-response"))) {
             redirect(uri: "/admin/register")
+
+            return
         }
 
         User user = this.registerer.register(params.email, params.password, "ROLE_ADMIN", true)
