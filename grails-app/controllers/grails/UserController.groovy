@@ -1,5 +1,6 @@
 package grails
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import recaptcha.ReCaptchaChecker
 import user.*
@@ -90,4 +91,10 @@ class UserController
 
     @Secured("ROLE_ADMIN")
     def adminUserIndex() {}
+
+    @Secured("permitAll")
+    def getUsers()
+    {
+        render([users: User.findAll()] as JSON)
+    }
 }

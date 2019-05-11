@@ -71,6 +71,10 @@ class UrlMappings {
             action = [ GET: "confirmRegistration" ]
         }
 
+        "/users" (controller: "user") {
+            action = [ GET: "getUsers" ]
+        }
+
         "/" (uri: "/login")
         "500"(controller: 'error', action: 'error')
         "404"(controller: 'error', action: 'error')
